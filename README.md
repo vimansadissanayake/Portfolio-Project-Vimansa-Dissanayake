@@ -25,8 +25,6 @@ Technologies Used
 How to Run
 
 Simply open `index.html` in any web browser.
-No build tools or dependencies required.
-Live demo : https://vimansadissanayake.github.io/Portfolio-Project-Vimansa-Dissanayake/
 Email : charuniedu@gmail.com
 Built by D.M. Vimansa Charuni Dissanayake 
 
