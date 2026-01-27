@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vimansa Dissanayake - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary-blue: #4a90e2;
+            --secondary-blue: #5ba4f5;
+            --dark-bg: #0f1419;
+            --card-bg: #1a1f2e;
+            --section-bg: #141922;
+            --text-primary: #e8eef5;
+            --text-secondary: #a8b2c1;
+            --border-color: rgba(74, 144, 226, 0.2);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1.2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.3px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s;
+        }
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--section-bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 70%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.08) 0%, transparent 60%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .hero-content {
+            max-width: 650px;
+            z-index: 1;
+        }
+        .hero-label {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            color: var(--primary-blue);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+        .typing-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .typing-text {
+            min-height: 2.2rem;
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 550px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(74, 144, 226, 0.4);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            box-shadow: none;
+        }
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: #fff;
+        }
+        .hero-img {
+            width: 420px;
+            height: 420px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .hero-img-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            border: 2px solid var(--primary-blue);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(74, 144, 226, 0.4);
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        /* Section Styles */
+        section {
+            padding: 6rem 8%;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-label {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--primary-blue);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        /* About Section */
+        .about {
+            background: var(--section-bg);
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-img-wrapper {
+            position: relative;
+            max-width: 300px;
+        }
+        .about-img-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--primary-blue);
+            border-radius: 10px;
+            z-index: -1;
+        }
+        .about-img img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+        }
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(74, 144, 226, 0.05);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        /* Skills Section */
+        .skills {
+            background: var(--dark-bg);
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+        .skill-category {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-blue);
+        }
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .skill-category h3 i {
+            font-size: 1.8rem;
+        }
+        .skill-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .skill-item {
+            background: rgba(74, 144, 226, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .skill-item:hover {
+            background: rgba(74, 144, 226, 0.1);
+            transform: translateY(-3px);
+            border-color: var(--primary-blue);
+        }
+        .skill-icon {
+            font-size: 2rem;
+            color: var(--primary-blue);
+        }
+        .skill-item h4 {
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        /* Certificates Section */
+        .certificates {
+            background: var(--section-bg);
+        }
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .certificate-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .certificate-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-blue);
+        }
+        .certificate-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .certificate-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .certificate-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+            line-height: 1.4;
+        }
+        .certificate-issuer {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        /* Projects Section */
+        .projects {
+            background: var(--dark-bg);
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-blue);
+        }
+        .project-img {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        .project-card:hover .project-img::before {
+            left: 100%;
+        }
+        .project-info {
+            padding: 2rem;
+        }
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+        .project-info h3 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .project-info p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(74, 144, 226, 0.1);
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .project-link:hover {
+            background: var(--primary-blue);
+            color: #fff;
+        }
+        /* Contact Section */
+        .contact {
+            background: var(--section-bg);
+        }
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        .contact-item:hover {
+            border-color: var(--primary-blue);
+            transform: translateX(5px);
+        }
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(74, 144, 226, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+        }
+        .contact-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .contact-details p {
+            color: var(--text-secondary);
+        }
+        .contact-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-link:hover {
+            color: var(--primary-blue);
+        }
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            padding: 3rem 8%;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .footer-text {
+            color: var(--text-secondary);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background: var(--primary-blue);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero, section {
+                padding: 4rem 5%;
+            }
+            nav {
+                padding: 1.2rem 5%;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-content, .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .typing-container {
+                font-size: 1.4rem;
+                justify-content: center;
+            }
+            .hero-img {
+                width: 280px;
+                height: 280px;
+                margin-top: 2rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .certificates-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Vimansa Dissanayake</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="hero-label">Welcome to my portfolio</span>
+            <h1>D.M. Vimansa Charuni Dissanayake</h1>
+            <div class="typing-container">
+                <span>I'm a</span>
+                <span class="typing-text" id="typed-text"></span>
+            </div>
+            <p>A passionate UI/UX Designer and Front-End Developer dedicated to creating meaningful, user-centered digital experiences.</p>
+            <div class="btn-group">
+                <a href="#contact" class="btn">
+                    <i class="fas fa-envelope"></i>
+                    Get In Touch
+                </a>
+                <a href="Frontend-CV.pdf" download="Vimansa_Dissanayake_Frontend_CV.pdf" class="btn btn-secondary">
+                    <i class="fas fa-download"></i>
+                    Front-End CV
+                </a>
+                <a href="UIUX-CV.pdf" download="Vimansa_Dissanayake_UIUX_CV.pdf" class="btn btn-secondary">
+                    <i class="fas fa-download"></i>
+                    UI/UX CV
+                </a>
+            </div>
+        </div>
+        <div class="hero-img">
+            <div class="hero-img-wrapper">
+                <img src="s.jpeg" alt="Vimansa Dissanayake">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-header">
+            <span class="section-label">Get to know me</span>
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Passionate about creating exceptional digital experiences</p>
+        </div>
+        <div class="about-content">
+            <div class="about-img-wrapper">
+                <img src="vi.jpg" height="500" width="500" alt="About">
+            </div>
+            <div class="about-text">
+                <h3>UI/UX Designer & Front-End Developer</h3>
+                <p>I am an ICT undergraduate at the Faculty of Technological Studies, University of Jaffna, passionate about combining design and technology to create meaningful digital experiences.</p>
+                <p>My interests lie in UI/UX Design and Front-End Development, where I focus on designing clean, intuitive, and user-friendly interfaces that prioritize both aesthetics and functionality.</p>
+                <p>I enjoy leveraging both creative and technical skills to solve problems, design impactful solutions, and build digital experiences that effectively connect people with technology.</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Technologies</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4+</div>
+                        <div class="stat-label">Design Tools</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="section-header">
+            <span class="section-label">My expertise</span>
+            <h2 class="section-title">Skills & Technologies</h2>
+            <p class="section-subtitle">Technical skills and design tools I work with</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> Front-End Development</h3>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <i class="fab fa-html5 skill-icon"></i>
+                        <h4>HTML</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-css3-alt skill-icon"></i>
+                        <h4>CSS</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-js-square skill-icon"></i>
+                        <h4>JavaScript</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-react skill-icon"></i>
+                        <h4>React</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-code skill-icon"></i>
+                        <h4>PHP</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-python skill-icon"></i>
+                        <h4>Python</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-cube skill-icon"></i>
+                        <h4>C++</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-database skill-icon"></i>
+                        <h4>SQL</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-palette"></i> UI/UX Design</h3>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <i class="fas fa-pen-fancy skill-icon"></i>
+                        <h4>Figma</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-shapes skill-icon"></i>
+                        <h4>Adobe XD</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-pen-ruler skill-icon"></i>
+                        <h4>Wireframing</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-film skill-icon"></i>
+                        <h4>Prototyping</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-image skill-icon"></i>
+                        <h4>Canva</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-wordpress skill-icon"></i>
+                        <h4>Photoshop</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-tools"></i> Other Tools</h3>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <i class="fab fa-git-alt skill-icon"></i>
+                        <h4>Git/GitHub</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-terminal skill-icon"></i>
+                        <h4>VS Code</h4>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <i class="fas fa-cube skill-icon"></i>
+                        <h4>Tailwind CSS</h4>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-server skill-icon"></i>
+                        <h4>Responsive Design</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="certificates">
+        <div class="section-header">
+            <span class="section-label">Achievements</span>
+            <h2 class="section-title">Certificates & Credentials</h2>
+            <p class="section-subtitle">Professional certifications and course completions</p>
+        </div>
+        <div class="certificates-grid">
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">React Course</div>
+                    <div class="certificate-issuer">DP Education IT Campus</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">Figma Design-UI/UX Certification</div>
+                    <div class="certificate-issuer">DP Education IT Campus</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">Front-End Web Development</div>
+                    <div class="certificate-issuer">University of Moratuwa</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">Master AI for Web App Development</div>
+                    <div class="certificate-issuer">SimpliLearn</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">Python Programming</div>
+                    <div class="certificate-issuer">University of Moratuwa</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">Software Development</div>
+                    <div class="certificate-issuer">CPD Workshop</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">Advancements in Computing International Conference</div>
+                    <div class="certificate-issuer">SLIIT</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">Digital Marketing Fundamentals</div>
+                    <div class="certificate-issuer">Google</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">Software Quality Assurance</div>
+                    <div class="certificate-issuer">University of Moratuwa</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">Web Design for Beginners</div>
+                    <div class="certificate-issuer">University of Moratuwa</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">IEEE Membership</div>
+                    <div class="certificate-issuer">IEEE Professional</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">Operating Systems-Technical Certification</div>
+                    <div class="certificate-issuer">Saylor Academy</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">C++ Programming</div>
+                    <div class="certificate-issuer">Saylor Academy</div>
+                </div>
+            </div>
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-name">CSS Course</div>
+                    <div class="certificate-issuer">DP Education IT Campus</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frontend Projects Section -->
+    <section id="projects" class="projects">
+        <div class="section-header">
+            <span class="section-label">My work</span>
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">A collection of my recent work and creative projects</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="logo.png" alt="AgroConnect">
+                </div>
+                <div class="project-info">
+                    <div class="project-tags">
+                        <span class="tag">Web App</span>
+                        <span class="tag">UI/UX</span>
+                        <span class="tag">Front-End</span>
+                    </div>
+                    <h3>AgroConnect – A Digital Agriculture Platform</h3>
+                    <p>Developed a digital agriculture platform with role-based dashboards, product listings, disease reporting, expert feedback, and courier features. Designed and implemented responsive dashboards improving usability for four user roles.</p>
+                    <p>Created wireframes and interactive prototypes using Adobe XD/Figma</p>
+                    <p>Technologies: HTML, CSS, JavaScript, PHP, MySQL.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/vimansadissanayake/-AgroConnect-Digital-Agriculture-Platform.git" class="project-link">
+                            <i class="fab fa-github"></i>
+                            View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="slgmlogo.png" alt="SL GADGET MAN">
+                </div>
+                <div class="project-info">
+                    <div class="project-tags">
+                        <span class="tag">E-commerce</span>
+                        <span class="tag">Html</span>
+                        <span class="tag">Design</span>
+                    </div>
+                    <h3>YouTube Channel Website | SL GADGET MAN</h3>
+                    <p>Developed a complete content management system for a SL GADGET MAN YouTube channel.</p>
+                    <p>Features: responsive design, admin dashboard, contact form, duplicate prevention.</p>
+                    <p>Created wireframes and interactive prototypes using Adobe XD/Figma</p>
+                    <p>Technologies: PHP, MySQL, HTML, CSS, JavaScript</p>
+                    <div class="project-links">
+                        <a href="https://github.com/vimansadissanayake/SL-GADGET-MAN-YouTube-Content-Creator-Website.git" class="project-link">
+                            <i class="fab fa-github"></i>
+                            View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <i class="fas fa-graduation-cap" style="font-size: 4rem; color: #fff;"></i>
+                </div>
+                <div class="project-info">
+                    <div class="project-tags">
+                        <span class="tag">LMS</span>
+                        <span class="tag">Education</span>
+                        <span class="tag">Tailwind</span>
+                    </div>
+                    <h3>SmartOLevel – Learning Management System</h3>
+                    <p>Full-featured LMS for O/Level students with admin, teacher, and student roles. Includes file uploads, quizzes, assignments, and grading.</p>
+                    <p>Created wireframes and interactive prototypes using Adobe XD/Figma</p>
+                    <p>Technologies: PHP, MySQL, Tailwind CSS, JavaScript</p>
+                    <div class="project-links">
+                        <a href="https://github.com/vimansadissanayake/SmartOLevel---Learning_Management_System.git" class="project-link">
+                            <i class="fab fa-github"></i>
+                            View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                 <div class="project-img">
+                    <img src="foodmart.png" alt="SL GADGET MAN">
+                </div>
+                <div class="project-info">
+                    <div class="project-tags">
+                        <span class="tag">foodApp</span>
+                        <span class="tag">UI/UX</span>
+                        <span class="tag">Figma</span>
+                    </div>
+                    <h3>FoodMart – Designed a mobile food ordering app using Adobe Xd</h3>
+                    <p>Designed a mobile food ordering app with menu browsing, cart, and checkout flow.</p>
+                    <p>Design & UI/UX: Figma, Adobe XD</p>
+                    <div class="project-links">
+                        <a href="https://github.com/vimansadissanayake/FoodMart--UI-UX-project-.git" class="project-link">
+                            <i class="fab fa-github"></i>
+                            View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="zeylee logo.png" alt="SL GADGET MAN">
+                </div>
+                <div class="project-info">
+                    <div class="project-tags">
+                        <span class="tag">E-Commerce</span>
+                        <span class="tag">UI/UX</span>
+                        <span class="tag">Front-End</span>
+                    </div>
+                    <h3>ZEYLEE – Handcrafted E-Commerce Storefront</h3>
+                    <p>ZEYLEE is a modern, responsive e-commerce website for selling handcrafted hair accessories and custom tote bags,
+                         featuring a sleek dark-mode design, product browsing, a dynamic shopping cart, 
+                        and custom design requests.</p>
+                    <p>Design & UI/UX: Figma, Adobe XD</p>
+                    <p>Technologies: PHP, MySQL, Tailwind CSS, JavaScript</p>
+                    <div class="project-links">
+                        <a href="https://github.com/vimansadissanayake/ZEYLEE-Handcrafted-E-Commerce-Storefront.git" class="project-link">
+                            <i class="fab fa-github"></i>
+                            View Code
+                        </a>
+                        <a href="https://vimansadissanayake.github.io/ZEYLEE-Handcrafted-E-Commerce-Storefront/" class="project-link">
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="s.jpeg" alt="portfolio">
+                </div>
+                <div class="project-info">
+                    <div class="project-tags">
+                        <span class="tag">UI/UX</span>
+                        <span class="tag">Front-End</span>
+                        <span class="tag">Skills</span>
+                    </div>
+                    <h3>Portfolio Website | Vimansa Dissanayake </h3>
+                    <p>Developed my portfolio project | Front-End Developer & UI/UX Designer</p>
+                    <p>Created wireframes and interactive prototypes using Adobe XD/Figma</p>
+                    <p>Technologies: PHP, MySQL, HTML, CSS, JavaScript</p>
+                    <div class="project-links">
+                        <a href="https://github.com/vimansadissanayake/Portfolio-Project-Vimansa-Dissanayake.git" class="project-link">
+                            <i class="fab fa-github"></i>
+                            View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-header">
+            <span class="section-label">Reach out</span>
+            <h2 class="section-title">Contact & Links</h2>
+        </div>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p><a href="mailto:charuniedu@gmail.com" class="contact-link">charuniedu@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <div class="contact-details">
+                        <h4>Phone</h4>
+                        <p>+94 72 411 7870</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                    <div class="contact-details">
+                        <h4>LinkedIn</h4>
+                        <p><a href="https://www.linkedin.com/in/vimansa-dissanayake-80125535a/" target="_blank" class="contact-link">vimansa-dissanayake</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-github"></i></div>
+                    <div class="contact-details">
+                        <h4>GitHub</h4>
+                        <p><a href="https://github.com/vimansadissanayake" target="_blank" class="contact-link">vimansadissanayake</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-medium"></i></div>
+                    <div class="contact-details">
+                        <h4>Medium</h4>
+                        <p><a href="https://medium.com/@vimansacharuni" target="_blank" class="contact-link">@vimansacharuni</a></p>
+                    </div>
+                </div>
+
+                 <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-behance"></i></div>
+                    <div class="contact-details">
+                        <h4>Behance</h4>
+                        <p><a href="https://www.behance.net/dmvcharuni" target="_blank" class="contact-link">@dmvcharuni</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-text">© 2025 Vimansa Dissanayake - All Rights Reserved</div>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/vimansa-dissanayake-80125535a/" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/vimansadissanayake" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://medium.com/@vimansacharuni" class="social-link" target="_blank"><i class="fab fa-medium"></i></a>
+            <a href="https://www.behance.net/dmvcharuni" class="social-link" target="_blank"><i class="fab fa-behance"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        const texts = [
+            "UI/UX Designer",
+            "Front-End Developer"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typingSpeed = 120;
+        const deletingSpeed = 80;
+        const delayBetween = 1500;
+        const typedText = document.getElementById("typed-text");
+
+        function type() {
+            if (charIndex < texts[textIndex].length) {
+                typedText.textContent += texts[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingSpeed);
+            } else {
+                setTimeout(erase, delayBetween);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typedText.textContent = texts[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, deletingSpeed);
+            } else {
+                textIndex = (textIndex + 1) % texts.length;
+                setTimeout(type, typingSpeed);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", type);
+    </script>
+</body>
+</html>
